@@ -1,155 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gayosso | Asistente Virtual de Reclutamiento</title>
- 
-    <!-- Colores corporativos -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reclutamiento Gayosso | Únete a nosotros</title>
     <style>
+        /* --- ESTILOS GENERALES --- */
         :root {
-            --azul-gayosso: #0b5cab;
-            --azul-oscuro: #073e7a;
-            --gris-claro: #f4f6fa;
-            --gris-texto: #4a4a4a;
-            --fondo-card: #ffffff;
+            --verde-fuerte: #004d2c; /* Verde institucional Gayosso */
+            --verde-claro: #28a745;
+            --gris-fondo: #f8f9fa;
+            --blanco: #ffffff;
         }
  
         body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             margin: 0;
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: var(--gris-claro);
-            color: var(--gris-texto);
+            padding: 0;
+            background-color: var(--gris-fondo);
+            color: #333;
         }
  
-        /* Header corporativo */
+        /* --- NAVEGACIÓN --- */
         header {
-            background: var(--azul-gayosso);
-            padding: 25px;
-            text-align: center;
-            color: white;
-            font-size: 26px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+            background: var(--blanco);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
  
-        /* Contenedor principal */
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
- 
-        .hero {
-            background: var(--fondo-card);
-            padding: 40px;
-            border-radius: 14px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.1);
-            margin-bottom: 35px;
-        }
- 
-        h1 {
-            color: var(--azul-oscuro);
-            font-size: 32px;
-            font-weight: 700;
-            margin-top: 0;
-        }
- 
-        p {
-            font-size: 17px;
-            line-height: 1.6;
-        }
- 
-        /* Separador */
-        .divider {
-            height: 2px;
-            background: var(--azul-gayosso);
-            width: 80px;
-            margin: 25px 0;
-            border-radius: 2px;
-        }
- 
-        /* Caja del chatbot */
-        .chat-box {
-            background: var(--fondo-card);
-            border-radius: 14px;
-            padding: 20px;
-            border: 2px solid #d9dee6;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
- 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            background: var(--azul-gayosso);
-            color: white;
-            font-size: 13px;
-            letter-spacing: 0.5px;
-        }
- 
-        /* Opcional: Logo centrado */
         .logo {
-            text-align: center;
-            margin-bottom: 25px;
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--verde-fuerte);
+            letter-spacing: 1px;
         }
  
-        .logo img {
-            max-width: 180px;
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 8%;
+            background: linear-gradient(135deg, var(--verde-fuerte) 60%, #00331d 100%);
+            color: white;
+            min-height: 400px;
+        }
+ 
+        .hero-text { flex: 1; padding-right: 20px; }
+        .hero-text h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero-text p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 30px; }
+ 
+        .btn-main {
+            background-color: var(--verde-claro);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .btn-main:hover { background-color: #218838; transform: translateY(-2px); }
+ 
+        .hero-img {
+            flex: 1;
+            text-align: right;
+        }
+        .hero-img img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+ 
+        /* --- CHATBOT INTERACTIVO --- */
+        #chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+ 
+        /* Botón Circular */
+        #chat-btn {
+            width: 60px;
+            height: 60px;
+            background-color: var(--verde-fuerte);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-size: 24px;
+            transition: 0.3s;
+        }
+        #chat-btn:hover { transform: scale(1.1); }
+ 
+        /* Ventana del Chat */
+        #chat-window {
+            width: 320px;
+            height: 450px;
+            background: white;
+            border-radius: 15px;
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            display: none; /* Inicia oculto */
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+ 
+        .chat-header {
+            background: var(--verde-fuerte);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+ 
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #fdfdfd;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+ 
+        /* Burbujas */
+        .msg { padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.4; max-width: 80%; }
+        .bot { background: #e8f5e9; color: #1b5e20; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .user { background: var(--verde-fuerte); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+ 
+        .chat-footer {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 5px;
+        }
+ 
+        .chat-footer input {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 5px;
+            outline: none;
+        }
+ 
+        .chat-footer button {
+            background: var(--verde-fuerte);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+ 
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; }
+            .hero-text { padding-right: 0; margin-bottom: 30px; }
+            .hero-img { display: none; }
         }
     </style>
 </head>
- 
 <body>
  
-<header>
-    Grupo Gayosso – Asistente Virtual de Reclutamiento
-</header>
+    <header>
+        <div class="logo">GAYOSSO</div>
+        <div style="font-size: 0.9rem; color: #666;">Bolsa de Trabajo</div>
+    </header>
  
-<div class="container">
+    <section class="hero">
+        <div class="hero-text">
+            <h1>TU CARRERA COMIENZA AQUÍ</h1>
+            <p>Forma parte de la empresa funeraria más importante de México. Buscamos talento con sentido humano.</p>
+            <a href="#" class="btn-main">SUBIR MI CV</a>
+        </div>
+        <div class="hero-img">
+            <img src="https://via.placeholder.com/500x300/ffffff/004d2c?text=Equipo+Gayosso" alt="Personal Gayosso">
+        </div>
+    </section>
  
-    <!-- Logo institucional -->
-    <div class="logo">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Gayosso_logo.svg/2560px-Gayosso_logo  </div>
- 
-    <!-- Sección hero -->
-    <div class="hero">
-        <h1>Bienvenido(a) al Proceso de Reclutamiento</h1>
-        <div class="divider"></div>
-        <p>
-            Nuestro <strong>Asistente Virtual de Reclutamiento</strong> está diseñado para ayudarte a iniciar tu proceso
-            de forma rápida, segura y eficiente. Aquí podrás:
-        </p>
- 
-        <ul style="font-size:16px; line-height:1.7;">
-            <li>Enviar tu CV en PDF</li>
-            <li>Consultar el estatus de tu aplicación</li>
-            <li>Reagendar entrevistas</li>
-            <li>Conocer requisitos y vacantes disponibles</li>
-            <li>Resolver dudas sobre el proceso</li>
-        </ul>
- 
-        <p>
-            Todo sin necesidad de descargar aplicaciones o crear cuentas. Solo inicia el chat y deja que
-            nuestro asistente te guíe.
-        </p>
+    <div id="chat-container">
+        <div id="chat-window">
+            <div class="chat-header">
+                <span>Sofi - Asistente Virtual</span>
+                <span style="cursor:pointer" onclick="toggleChat()">×</span>
+            </div>
+            <div class="chat-body" id="chat-content">
+                <div class="msg bot">¡Hola! Soy Sofi. ¿Buscas vacantes o quieres saber cómo enviarnos tu CV?</div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="user-input" placeholder="Escribe tu duda...">
+                <button onclick="sendMsg()">➤</button>
+            </div>
+        </div>
+        <div id="chat-btn" onclick="toggleChat()">💬</div>
     </div>
  
-    <!-- Sección Chat -->
-    <h2 style="color:var(--azul-oscuro); font-size:26px; margin-bottom:10px;">Inicia el Chat Aquí</h2>
-    <p>Da clic en el recuadro para comenzar.</p>
+    <script>
+        const windowChat = document.getElementById('chat-window');
+        const contentChat = document.getElementById('chat-content');
+        const inputChat = document.getElementById('user-input');
  
-    <div class="chat-box">
-        <!-- 🔵🔵🔵 PEGAR AQUÍ TU EMBED CODE DE COPILOT STUDIO 🔵🔵🔵 -->
-    </div>
+        // Mostrar/Ocultar chat
+        function toggleChat() {
+            windowChat.style.display = (windowChat.style.display === 'flex') ? 'none' : 'flex';
+        }
  
-</div>
+        // Lógica de mensajes
+        function sendMsg() {
+            const text = inputChat.value.trim();
+            if(!text) return;
  
-<footer>
-    © 2026 Grupo Gayosso – Procesos de Reclutamiento y Selección
-</footer>
+            // Mensaje de usuario
+            appendMsg(text, 'user');
+            inputChat.value = '';
+ 
+            // Respuesta automática de Sofi
+            setTimeout(() => {
+                let respuesta = "Gracias por tu mensaje. Para una atención personalizada, por favor déjanos tus datos o presiona el botón 'SUBIR MI CV'.";
+                
+                const val = text.toLowerCase();
+                if(val.includes("hola")) respuesta = "¡Hola! Es un gusto saludarte. ¿En qué área te gustaría trabajar?";
+                else if(val.includes("vacante") || val.includes("trabajo")) respuesta = "Tenemos vacantes abiertas en Ventas, Atención al Cliente y Previsión. ¿En qué ciudad te encuentras?";
+                else if(val.includes("cv") || val.includes("curriculum")) respuesta = "¡Excelente! Puedes subir tu CV directamente en el botón verde de la página principal.";
+ 
+                appendMsg(respuesta, 'bot');
+            }, 800);
+        }
+ 
+        function appendMsg(text, sender) {
+            const div = document.createElement('div');
+            div.className = `msg ${sender}`;
+            div.innerText = text;
+            contentChat.appendChild(div);
+            contentChat.scrollTop = contentChat.scrollHeight; // Auto-scroll
+        }
+ 
+        // Enviar con Enter
+        inputChat.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') sendMsg();
+        });
+    </script>
  
 </body>
 </html>
